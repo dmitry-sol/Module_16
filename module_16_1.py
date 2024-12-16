@@ -10,7 +10,6 @@ def read_root():
 def read_admin():
     return {"message": "Вы вошли как администратор"}
 
-
 @app.get("/user/{user_id}")
 async def read_user(user_id: str):
     return {"message": f'Вы вошли как пользователь № {user_id}'}
