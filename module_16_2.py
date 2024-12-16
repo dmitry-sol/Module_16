@@ -4,12 +4,12 @@ from fastapi import FastAPI, Path
 app = FastAPI()
 
 @app.get('/')
-def read_root():
-    return {"message": "Hello, 16_2!"}
+def read_root() -> str:
+    return "Главная страница 16_2"
 
 @app.get("/user/admin")
-def read_admin():
-    return {"message": "Вы вошли как администратор"}
+def read_admin() -> str:
+    return "Вы вошли как администратор"
 
 @app.get("/user/{user_id}")
 async def read_user(user_id: Annotated[
@@ -19,8 +19,8 @@ async def read_user(user_id: Annotated[
                         le=100,
                         title="Enter User ID",
                         example=1)
-                    ]):
-    return {"message": f'Вы вошли как пользователь № {user_id}'}
+                    ]) -> str:
+    return f'Вы вошли как пользователь № {user_id}'
 
 @app.get("/user/{username}/{age}")
 def get_user_info(username: Annotated[
@@ -38,7 +38,7 @@ def get_user_info(username: Annotated[
                         le=120,
                         title="Enter age",
                         example=24)
-                    ]):
-    return {"message": f"Информация о пользователе. Имя: {username}, Возраст: {age}"}
+                    ]) -> str:
+    return f"Информация о пользователе. Имя: {username}, Возраст: {age}"
 
 # uvicorn module_16_2:app --reload
