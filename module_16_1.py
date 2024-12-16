@@ -12,11 +12,11 @@ def read_admin():
 
 
 @app.get("/user/{user_id}")
-async def read_user(user_id: int):
+async def read_user(user_id: str):
     return {"message": f'Вы вошли как пользователь № {user_id}'}
 
 @app.get("/user/")
-def get_user_info(username: str, age: int):
+def get_user_info(username: str, age: str):
     return {"message": f"Информация о пользователе. Имя: {username}, Возраст: {age}"}
 
 # uvicorn module_16_1:app --reload
