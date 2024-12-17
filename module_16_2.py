@@ -4,11 +4,11 @@ from fastapi import FastAPI, Path
 app = FastAPI()
 
 @app.get('/')
-def read_root() -> str:
+async def read_root() -> str:
     return "Главная страница 16_2"
 
 @app.get("/user/admin")
-def read_admin() -> str:
+async def read_admin() -> str:
     return "Вы вошли как администратор"
 
 @app.get("/user/{user_id}")
@@ -23,7 +23,7 @@ async def read_user(user_id: Annotated[
     return f'Вы вошли как пользователь № {user_id}'
 
 @app.get("/user/{username}/{age}")
-def get_user_info(username: Annotated[
+async def get_user_info(username: Annotated[
                     str,
                     Path(
                         min_length=5,
