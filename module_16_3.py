@@ -8,7 +8,7 @@ async def read_root() -> str:
     return 'Главная страница модуля 16_3'
 
 @app.get('/users')
-async def read_users():
+async def get_users():
     return users
 
 @app.post('/user/{username}/{age}')
