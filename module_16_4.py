@@ -32,7 +32,7 @@ async def edit_user(user_id: int, username: str, age: int):
             user.username = username
             user.age = age
             return user
-    raise HTTPException(status_code=404, detail="User was not found")
+    raise HTTPException(status_code=404, detail='Имя не найдено')
 
 @app.delete('/user/{user_id}', response_model=User)
 async def delete_user(user_id: int):
@@ -40,6 +40,6 @@ async def delete_user(user_id: int):
         if user.id == user_id:
             removed_user = users.pop(index)
             return removed_user
-    raise HTTPException(status_code=404, detail="User was not found")
+    raise HTTPException(status_code=404, detail='Имя не найдено')
 
 # uvicorn module_16_4:app --reload
