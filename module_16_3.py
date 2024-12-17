@@ -19,18 +19,18 @@ async def add_user(username: str, age: int):
 
 @app.put('/user/{user_id}/{username}/{age}')
 async def edit_user(user_id: int, username: str, age: int):
-    for k, v in users.items():
-        if k == str(user_id):
-            users[k] = f'Имя: {username}, возраст: {age}'
-            return f'The user {k} is updated'
+    user_id_str = str(user_id)
+    if user_id_str in users:
+        users[user_id_str] = f'Имя: {username}, возраст: {age}'
+        return f'The user {user_id_str} is updated'
     raise HTTPException(status_code=404, detail='Имя не найдено')
 
 @app.delete('/user/{user_id}/')
 async def delete_user(user_id: int):
-    for k, v in users.items():
-        if k == str(user_id):
-            del users[k]
-            return f'The user {k} is deleted'
+    user_id_str = str(user_id)
+    if user_id_str in users:
+        del users[user_id_str]
+        return f'The user {user_id_str} is deleted'
     raise HTTPException(status_code=404, detail='Имя не найдено')
 
 # uvicorn module_16_3:app --reload
