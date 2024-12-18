@@ -1,0 +1,36 @@
+{% extends 'main.html' %}
+{% block crud_container %}
+    {% if user %}
+        <!-- Отображение данных о конкретном пользователе -->
+        <div class="card container-fluid">
+            <div class="card-header text-bg-primary">
+                <h3>Информация о пользователе</h3>
+            </div>
+            <div class="card-body">
+                <p><strong>ID:</strong> {{ user.id }}</p>
+                <p><strong>Имя пользователя:</strong> {{ user.username }}</p>
+                <p><strong>Возраст:</strong> {{ user.age }} лет</p>
+            </div>
+        </div>
+        <br>
+        <a href="/users" class="btn btn-secondary">Назад к списку пользователей</a>
+    {% else %}
+        <!-- Отображение списка всех пользователей -->
+        <section class="container-fluid">
+            <h2 align="center" class="mb-4">Users</h2>
+            <div class="card">
+                <ul class="list-group list-group-flush">
+                    {% for user in users %}
+                        <li class="list-group-item">
+                            <a href="/user/{{ user.id }}" class="text-decoration-none">
+                                <strong>{{ user.username }}</strong> ({{ user.age }} лет)
+                            </a>
+                        </li>
+                    {% else %}
+                        <li class="list-group-item">Пользователи не найдены.</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </section>
+    {% endif %}
+{% endblock %}
